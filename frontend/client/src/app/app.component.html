@@ -1,26 +1,9 @@
-<h1>Welcome to Our Bank</h1>
-<h3 style="text-align: center">Transfer Money</h3>
-<hr />
-Account:
-<input
-  type="text"
-  [value]="transfer.to"
-  (change)="handleAccountChange($event)"
-/>
-
-<br />
-<br />
-
-Ammount:
-<input
-  type="number"
-  [value]="transfer.amount"
-  (change)="handleAmountChange($event)"
-/>
-
-<br />
-<br />
-
-<button (click)="transferMoney()">Transfer money</button> <br /><br />
-
-<button (click)="transferMoneyPost()">Transfer money - POST</button>
+<div class="container">
+  <ul class="nav nav-pills">
+    <li><a routerLinkActive="active" routerLink="/home">Home</a></li>
+    <li><a routerLinkActive="active" routerLink="/login">Login</a></li>
+  </ul>
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
