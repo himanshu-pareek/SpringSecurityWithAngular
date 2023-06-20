@@ -8,22 +8,36 @@ export class AppService {
 
   constructor (private readonly http: HttpClient) { }
 
-  async authenticate (credentials?: {
+  async fetchAuthenticationState (): Promise<boolean> {
+    return await new Promise((resolve, reject) => {
+      this.http.get<{ name: string }>('/user')
+        .subscribe({
+          next: value => {
+            this.authenticated = true
+            resolve(true)
+          },
+          error: error => {
+            this.authenticated = false
+            reject(error)
+          }
+        })
+    })
+  }
+
+  async authenticate (credentials: {
     username: string
     password: string
-  }, callback = null): Promise<{ name: string | null }> {
+  }): Promise<{ name: string }> {
     const headers = new HttpHeaders(
-      (credentials != null)
-        ? {
-            authorization: 'Basic ' + btoa(
+      {
+        authorization: 'Basic ' + btoa(
             `${credentials.username}:${credentials.password}`
-            )
-          }
-        : {}
+        )
+      }
     )
 
     return await new Promise((resolve, reject) => {
-      this.http.get<{ name: string | null }>('user', {
+      this.http.get<{ name: string }>('/user', {
         headers
       }).subscribe({
         next: (response) => {
