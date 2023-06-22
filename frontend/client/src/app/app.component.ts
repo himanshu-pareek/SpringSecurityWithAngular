@@ -1,42 +1,34 @@
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+import { Component, OnInit } from '@angular/core'
+import { AppService } from './app.service'
 import { HttpClient } from '@angular/common/http'
-import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'client'
-  transfer = {
-    to: '',
-    amount: 0
+export class AppComponent implements OnInit {
+  title = 'Spring Security with Angular'
+
+  constructor (
+    private readonly appService: AppService,
+    private readonly http: HttpClient,
+    private readonly router: Router
+  ) {
   }
 
-  constructor (private readonly http: HttpClient) {}
-
-  handleAccountChange (event: any): void {
-    this.transfer.to = event.target.value
-  }
-
-  handleAmountChange (event: any): void {
-    this.transfer.amount = parseInt(event.target.value)
-  }
-
-  transferMoney (): void {
-    this.http.get('/banking/transfer', {
-      params: {
-        account: this.transfer.to,
-        amount: this.transfer.amount
-      }
-    }).subscribe(console.log)
-  }
-
-  transferMoneyPost (): void {
-    this.http.post('/banking/transfer', {
-      account: this.transfer.to,
-      amount: this.transfer.amount
-    }).subscribe(console.log)
+  ngOnInit (): void {
+    this.appService.fetchAuthenticationState()
+      .then(value => {
+        if (!value) {
+          void this.router.navigateByUrl('/login')
+        }
+      })
+      .catch(error => {
+        console.error(error)
+        void this.router.navigateByUrl('/login')
+      })
   }
 }
