@@ -14,8 +14,8 @@ export class AppService {
       this.http.get<{ name: string }>('/user')
         .subscribe({
           next: value => {
-            this.authenticated = true
-            resolve(true)
+            this.authenticated = value.name != null
+            resolve(this.authenticated)
           },
           error: error => {
             this.authenticated = false
