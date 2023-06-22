@@ -2,28 +2,21 @@
 <h3 *ngIf="!authenticated()">Please login to continue</h3>
 <div *ngIf="authenticated()">
   <h3 style="text-align: center">Transfer Money</h3>
-  <hr />
-  Account:
-  <input
-    type="text"
-    [value]="transfer.to"
-    (change)="handleAccountChange($event)"
-  />
+  <hr/>
+  <form>
+    <div class="form-group">
+      <label for="account">Account:</label>
+      <input (change)="handleAccountChange($event)" [value]="transfer.to" class="form-control" id="account" placeholder="Bob"
+             type="text"/>
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount:</label>
+      <input (change)="handleAmountChange($event)" [value]="transfer.amount" class="form-control" id="amount"
+             placeholder="0" type="number"/>
+    </div>
+  </form>
 
-  <br />
-  <br />
-
-  Ammount:
-  <input
-    type="number"
-    [value]="transfer.amount"
-    (change)="handleAmountChange($event)"
-  />
-
-  <br />
-  <br />
-
-  <button (click)="transferMoney()">Transfer money</button> <br /><br />
-
-  <button (click)="transferMoneyPost()">Transfer money - POST</button>
+  <button (click)="transferMoney()" class="btn btn-primary">Transfer money</button>
+  <br/><br/>
+  <button (click)="transferMoneyPost()" class="btn btn-primary">Transfer money - POST</button>
 </div>

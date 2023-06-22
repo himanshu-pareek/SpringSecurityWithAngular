@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core'
 export class AppService {
   authenticated = false
 
-  constructor (private readonly http: HttpClient) { }
+  constructor (private readonly http: HttpClient) {
+  }
 
   async fetchAuthenticationState (): Promise<boolean> {
     return await new Promise((resolve, reject) => {
@@ -31,7 +32,7 @@ export class AppService {
     const headers = new HttpHeaders(
       {
         authorization: 'Basic ' + btoa(
-            `${credentials.username}:${credentials.password}`
+          `${credentials.username}:${credentials.password}`
         )
       }
     )
@@ -41,11 +42,7 @@ export class AppService {
         headers
       }).subscribe({
         next: (response) => {
-          if (response.name != null) {
-            this.authenticated = true
-          } else {
-            this.authenticated = false
-          }
+          this.authenticated = response.name != null
           resolve(response)
         },
         error: (error) => {

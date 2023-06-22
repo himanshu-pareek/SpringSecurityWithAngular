@@ -16,11 +16,19 @@ export class AppComponent implements OnInit {
     private readonly appService: AppService,
     private readonly http: HttpClient,
     private readonly router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit (): void {
     this.appService.fetchAuthenticationState()
-      .then(console.log)
-      .catch(console.error)
+      .then(value => {
+        if (!value) {
+          void this.router.navigateByUrl('/login')
+        }
+      })
+      .catch(error => {
+        console.error(error)
+        void this.router.navigateByUrl('/login')
+      })
   }
 }
