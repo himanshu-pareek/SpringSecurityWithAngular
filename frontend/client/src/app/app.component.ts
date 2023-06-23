@@ -31,4 +31,11 @@ export class AppComponent implements OnInit {
         void this.router.navigateByUrl('/login')
       })
   }
+
+  logout (): void {
+    this.http.post('/logout', {}).subscribe(() => {
+      this.appService.authenticated = false
+      void this.router.navigateByUrl('/login')
+    })
+  }
 }

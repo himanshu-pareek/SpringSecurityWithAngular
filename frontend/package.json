@@ -1,9 +1,10 @@
 {
-  "dependencies": {
-    "@angular/cli": "16.0.3",
-    "client": "file:client"
-  },
-  "scripts": {
-    "ng": "ng"
-  }
+    "dependencies": {
+        "@angular/cli": "16.0.3",
+        "client": "file:client"
+    },
+    "scripts": {
+        "ng": "ng",
+        "postinstall": "cd client && ./npm install"
+    }
 }
