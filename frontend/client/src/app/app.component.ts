@@ -38,4 +38,17 @@ export class AppComponent implements OnInit {
       void this.router.navigateByUrl('/login')
     })
   }
+
+  sayHello (): void {
+    this.http.get< { text: string }>('http://localhost:8082/demo/hello')
+      .subscribe({
+        next: value => {
+          alert(value.text)
+        },
+        error: err => {
+          console.error(err)
+        }
+      }
+      )
+  }
 }

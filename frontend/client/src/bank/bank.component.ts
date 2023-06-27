@@ -32,7 +32,7 @@ export class BankComponent {
   }
 
   transferMoney (): void {
-    this.http.get('/banking/transfer', {
+    this.http.get('http://localhost:8082/banking/transfer', {
       params: {
         account: this.transfer.to,
         amount: this.transfer.amount
@@ -41,7 +41,7 @@ export class BankComponent {
   }
 
   transferMoneyPost (): void {
-    this.http.post('/banking/transfer', {
+    this.http.post('http://localhost:8082/banking/transfer', {
       account: this.transfer.to,
       amount: this.transfer.amount
     }).subscribe(console.log)
