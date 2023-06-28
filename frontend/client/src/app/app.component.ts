@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Component, OnInit } from '@angular/core'
 import { AppService } from './app.service'
-import { HttpClient } from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Router } from '@angular/router'
 
 @Component({
@@ -39,8 +39,15 @@ export class AppComponent implements OnInit {
     })
   }
 
-  sayHello (): void {
-    this.http.get< { text: string }>('http://localhost:8082/demo/hello')
+  async sayHello (): Promise<void> {
+    const token = await this.appService.retrieveSessionToken()
+    this.http.get< { text: string }>(
+      'http://localhost:8082/demo/hello',
+      {
+        headers: new HttpHeaders()
+          .set('X-Auth-Token', token)
+      }
+    )
       .subscribe({
         next: value => {
           alert(value.text)
