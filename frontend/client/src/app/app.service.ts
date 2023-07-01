@@ -1,15 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable } from '@angular/core'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {Injectable} from '@angular/core'
 
 @Injectable()
 export class AppService {
   authenticated = false
 
-  constructor (private readonly http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
   }
 
-  async fetchAuthenticationState (): Promise<boolean> {
+  async fetchAuthenticationState(): Promise<boolean> {
     return await new Promise((resolve, reject) => {
       this.http.get<{ name: string }>('/user')
         .subscribe({
@@ -25,7 +25,7 @@ export class AppService {
     })
   }
 
-  async authenticate (credentials: {
+  async authenticate(credentials: {
     username: string
     password: string
   }): Promise<{ name: string }> {
@@ -49,6 +49,20 @@ export class AppService {
           reject(error)
         }
       })
+    })
+  }
+
+  async retrieveSessionToken(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.http.get<{ token: string }>('/token')
+        .subscribe({
+          next: data => {
+            resolve(data.token)
+          },
+          error: err => {
+            reject(err)
+          }
+        })
     })
   }
 }

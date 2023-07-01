@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
-import { HttpClient } from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Component } from '@angular/core'
 import { AppService } from 'src/app/app.service'
 
@@ -31,19 +31,25 @@ export class BankComponent {
     this.transfer.amount = parseInt(event.target.value)
   }
 
-  transferMoney (): void {
+  async transferMoney (): Promise<void> {
+    const token = await this.appService.retrieveSessionToken()
     this.http.get('http://localhost:8082/banking/transfer', {
       params: {
         account: this.transfer.to,
         amount: this.transfer.amount
-      }
+      }, headers: new HttpHeaders()
+        .set('X-Auth-Token', token)
     }).subscribe(console.log)
   }
 
-  transferMoneyPost (): void {
+  async transferMoneyPost (): Promise<void> {
+    const token = await this.appService.retrieveSessionToken()
     this.http.post('http://localhost:8082/banking/transfer', {
       account: this.transfer.to,
       amount: this.transfer.amount
+    }, {
+      headers: new HttpHeaders()
+        .set('X-Auth-Token', token)
     }).subscribe(console.log)
   }
 }
