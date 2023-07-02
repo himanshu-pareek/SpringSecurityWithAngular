@@ -40,13 +40,8 @@ export class AppComponent implements OnInit {
   }
 
   async sayHello (): Promise<void> {
-    const token = await this.appService.retrieveSessionToken()
     this.http.get< { text: string }>(
-      'http://localhost:8082/demo/hello',
-      {
-        headers: new HttpHeaders()
-          .set('X-Auth-Token', token)
-      }
+      '/resource/demo/hello'
     )
       .subscribe({
         next: value => {
