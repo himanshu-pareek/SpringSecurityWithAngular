@@ -51,18 +51,4 @@ export class AppService {
       })
     })
   }
-
-  async retrieveSessionToken(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      this.http.get<{ token: string }>('/token')
-        .subscribe({
-          next: data => {
-            resolve(data.token)
-          },
-          error: err => {
-            reject(err)
-          }
-        })
-    })
-  }
 }

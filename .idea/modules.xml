@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SpringSecurityWithAngular.iml" filepath="$PROJECT_DIR$/.idea/SpringSecurityWithAngular.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frontend/spring-angular-frontend-server.iml" filepath="$PROJECT_DIR$/frontend/spring-angular-frontend-server.iml" />
     </modules>
   </component>
 </project>

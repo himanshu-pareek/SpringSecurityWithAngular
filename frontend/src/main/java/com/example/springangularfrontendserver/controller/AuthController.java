@@ -15,9 +15,4 @@ public class AuthController {
         return user;
     }
 
-    @GetMapping("/token")
-    public Map<String, String> getToken(HttpSession session) {
-        return Collections.singletonMap("token", session.getId());
-    }
-
 }
