@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/authorization-server" />
     <file type="web" url="file://$PROJECT_DIR$/gateway-spring-cloud" />
     <file type="web" url="file://$PROJECT_DIR$/resource-server" />
   </component>
