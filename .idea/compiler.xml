@@ -6,12 +6,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-angular-frontend-server" />
+        <module name="client-server-oauth2" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gateway-spring-cloud" target="17" />
+      <module name="gateway-spring-cloud.main" target="17" />
+      <module name="gateway-spring-cloud.test" target="17" />
+      <module name="resource-server" target="17" />
+      <module name="resource-server.main" target="17" />
+      <module name="resource-server.test" target="17" />
+      <module name="spring-angular-frontend-server" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="client-server-oauth2" options="-parameters" />
       <module name="spring-angular-frontend-server" options="-parameters" />
     </option>
   </component>

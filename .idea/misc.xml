@@ -5,11 +5,12 @@
     <file type="web" url="file://$PROJECT_DIR$/authorization-server" />
     <file type="web" url="file://$PROJECT_DIR$/gateway-spring-cloud" />
     <file type="web" url="file://$PROJECT_DIR$/resource-server" />
+    <file type="web" url="file://$PROJECT_DIR$/resource-server-oauth2" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/frontend/pom.xml" />
+        <option value="$PROJECT_DIR$/client-server-oauth2/pom.xml" />
       </list>
     </option>
   </component>
