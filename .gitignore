@@ -3,3 +3,6 @@
 
 # Http Requests
 *.http
+
+# DS Store
+/.DS_Store

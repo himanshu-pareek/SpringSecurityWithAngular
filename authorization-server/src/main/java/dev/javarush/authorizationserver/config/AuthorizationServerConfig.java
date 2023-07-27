@@ -54,7 +54,7 @@ public class AuthorizationServerConfig {
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .scope(OidcScopes.PROFILE)
                 .scope(OidcScopes.OPENID)
-                .redirectUri("http://localhost:9000/auth")
+                .redirectUri("http://localhost:8081/login/oauth2/code/client")
                 .build();
 
         return new InMemoryRegisteredClientRepository(client);
