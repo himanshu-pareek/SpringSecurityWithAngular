@@ -1,0 +1,10 @@
+{
+    "dependencies": {
+        "@angular/cli": "16.0.3",
+        "@types/node": "18.16.0"
+    },
+    "scripts": {
+        "ng": "ng",
+        "postinstall": "cd ui && ./npm install"
+    }
+}

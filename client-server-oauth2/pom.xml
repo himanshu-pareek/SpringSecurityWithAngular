@@ -59,6 +59,62 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- https://github.com/eirslett/frontend-maven-plugin -->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.9.1</version>
+
+				<configuration>
+					<nodeVersion>v18.16.0</nodeVersion>
+				</configuration>
+
+				<!-- Use the latest released version: https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
+				<executions>
+					<!-- Install node and npm -->
+					<execution>
+						<id>Install Node and NPM</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+					</execution>
+
+					<!-- Install Angular CLI [ https://angular.io/cli ] && NPM Packages-->
+					<execution>
+						<id>Install Angular CLI and NPM Packages</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+
+					<!-- Build Angular App -->
+					<execution>
+						<id>Build Angular Application</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>--prefix ./ui run-script build</arguments>
+						</configuration>
+					</execution>
+
+					<!-- Test Angular Application -->
+					<execution>
+						<id>Test Angular Application</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>--prefix ./ui test</arguments>
+						</configuration>
+						<phase>test</phase>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
