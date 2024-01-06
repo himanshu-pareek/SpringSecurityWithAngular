@@ -7,7 +7,7 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.security.web.server.csrf.CsrfToken;
-import org.springframework.security.web.server.csrf.XorServerCsrfTokenRequestAttributeHandler;
+import org.springframework.security.web.server.csrf.ServerCsrfTokenRequestAttributeHandler;
 import org.springframework.web.server.WebFilter;
 import reactor.core.publisher.Mono;
 
@@ -20,7 +20,7 @@ public class AuthorizationConfig {
         http.csrf(
                 csrf -> csrf
                         .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
-                        .csrfTokenRequestHandler(new XorServerCsrfTokenRequestAttributeHandler()::handle)
+                        .csrfTokenRequestHandler(new ServerCsrfTokenRequestAttributeHandler()::handle)
         );
         http.authorizeExchange(
                 exchange -> exchange
@@ -34,7 +34,7 @@ public class AuthorizationConfig {
         return (exchange, chain) -> {
             Mono<CsrfToken> csrfTokenMono = exchange.getAttributeOrDefault(CsrfToken.class.getName(), Mono.empty());
             return csrfTokenMono.doOnSuccess(csrfToken -> {
-                System.out.println(csrfToken.getToken());
+                // System.out.println(csrfToken.getToken());
             }).then(chain.filter(exchange));
         };
     }

@@ -46,4 +46,19 @@ export class AppComponent {
       }
     })
   }
+
+  getDemo (): void {
+    this.httpClient.get<{ message: string }>('/demo').subscribe({
+      next: value => {
+        console.log(value)
+        alert(JSON.stringify(value, undefined, 4))
+      },
+      error: err => {
+        console.error(err)
+      },
+      complete: () => {
+        console.log('Completed.')
+      }
+    })
+  }
 }

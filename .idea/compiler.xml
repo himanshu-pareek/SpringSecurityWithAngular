@@ -10,9 +10,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="gateway-spring-cloud" target="17" />
-      <module name="gateway-spring-cloud.main" target="17" />
-      <module name="gateway-spring-cloud.test" target="17" />
       <module name="resource-server" target="17" />
       <module name="resource-server.main" target="17" />
       <module name="resource-server.test" target="17" />
