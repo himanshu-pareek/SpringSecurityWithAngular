@@ -1,13 +1,12 @@
 package dev.javarush.oauth2.resourceserveroauth2.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import java.util.Collections;
+import java.util.Map;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Collections;
-import java.util.Map;
 
 @RestController
 public class DemoController {
@@ -23,10 +22,11 @@ public class DemoController {
     }
 
     @PostMapping("hello")
+    // @PreAuthorize("#token.tokenAttributes.get('custom_role') == 'Johnn'")
     public Map<String, String> postHello(
-            Authentication authentication
+            JwtAuthenticationToken token
     ) {
-        String username = authentication.getName();
-        return Collections.singletonMap("post_text", "Hello " + username);
+        // System.out.println(token.getTokenAttributes().get("custom_role"));
+        return Collections.singletonMap("post_text", "Hello " + token.getName());
     }
 }
